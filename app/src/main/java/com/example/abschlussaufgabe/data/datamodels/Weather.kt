@@ -12,10 +12,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "weather_table")
 data class Weather(
 
-    @PrimaryKey(autoGenerate = true)
-    private val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     private val cityId: Int,
     val city: String,
+    val weatherImg: Int,
     val temp: Float,
 
     )

@@ -9,15 +9,16 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussaufgabe.R
 import com.example.abschlussaufgabe.data.datamodels.Weather
+import com.example.abschlussaufgabe.ui.HomeFragment
 
 class WeatherAdapter(
     private val dataset: List<Weather>
 ) : RecyclerView.Adapter<WeatherAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val guestName: TextView = view.findViewById(R.id.item_name_text)
-        val guestFood: TextView = view.findViewById(R.id.item_food_text)
-        val guestRow: ConstraintLayout = view.findViewById(R.id.item_layout)
+        var weatherImg: TextView = view.findViewById(R.id.iv_weather)
+        var tempValue: TextView = view.findViewById(R.id.tv_temp_value)
+        val weather: ConstraintLayout = view.findViewById(R.id.cl_item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -33,12 +34,12 @@ class WeatherAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
-        holder.guestName.text = item.name
-        holder.guestFood.text = item.food
+        holder.weatherImg = item.weatherImg
+        holder.tempValue.text = item.temp.toString()
 
-        holder.guestRow.setOnClickListener {
+        holder.weather.setOnClickListener {
             holder.view.findNavController()
-                .navigate(MainFragmentDirections.actionMainFragmentToEditFragment(item.id))
+                .navigate(HomeFragmentDirection.actionMainFragmentToEditFragment(item.id))
         }
     }
 }
