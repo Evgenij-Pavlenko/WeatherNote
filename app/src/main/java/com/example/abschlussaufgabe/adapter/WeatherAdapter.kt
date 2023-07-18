@@ -1,5 +1,6 @@
 package com.example.abschlussaufgabe.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.ui.HomeFragment
 
 class WeatherAdapter(
+    private val context: Context,
     private val dataset: List<Weather>
 ) : RecyclerView.Adapter<WeatherAdapter.ItemViewHolder>() {
 
@@ -33,8 +35,8 @@ class WeatherAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-
-        holder.weatherImg = item.weatherImg
+//TODO
+        holder.weatherImg.set = item.weatherImg
         holder.tempValue.text = item.temp.toString()
 
         holder.weather.setOnClickListener {
