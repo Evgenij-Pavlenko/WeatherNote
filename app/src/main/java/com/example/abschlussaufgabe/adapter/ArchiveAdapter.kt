@@ -38,6 +38,7 @@ class ArchiveAdapter (
 //TODO
             holder.weatherImg.set = item.weatherImg
             holder.tempValue.text = item.temp.toString()
+            holder.tempData.text = item.date.toString()
 
             holder.weather.setOnClickListener {
                 holder.view.findNavController()

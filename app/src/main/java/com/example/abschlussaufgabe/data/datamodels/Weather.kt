@@ -1,7 +1,9 @@
 package com.example.abschlussaufgabe.data.datamodels
 
+import android.provider.ContactsContract.Data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.Date
 
 /**
  * Diese Klasse steht für ein Weather
@@ -17,5 +19,6 @@ data class Weather(
     val city: String,
     val weatherImg: Int,
     val temp: Float,
+    val date: Date
 
     )
