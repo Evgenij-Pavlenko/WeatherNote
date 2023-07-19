@@ -36,7 +36,7 @@ class ArchiveAdapter (
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             val item = dataset[position]
 //TODO
-            holder.weatherImg.set = item.weatherImg
+            holder.weatherImg = item.weatherImg
             holder.tempValue.text = item.temp.toString()
             holder.tempData.text = item.date.toString()
 

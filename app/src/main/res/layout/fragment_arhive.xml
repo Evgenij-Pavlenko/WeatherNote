@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ArhiveFragment">
+    tools:context=".ui.ArchiveFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_archive"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -15,5 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="20"
         tools:listitem="@layout/archive_item"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

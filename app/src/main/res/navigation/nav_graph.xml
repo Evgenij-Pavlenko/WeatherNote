@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/arhiveFragment"
-        android:name="com.example.abschlussaufgabe.ui.ArhiveFragment"
+        android:name="com.example.abschlussaufgabe.ui.ArchiveFragment"
         android:label="fragment_arhive"
         tools:layout="@layout/fragment_arhive" >
         <action

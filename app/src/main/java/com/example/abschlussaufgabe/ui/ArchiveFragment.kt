@@ -8,12 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.abschlussaufgabe.R
+import com.example.abschlussaufgabe.adapter.WeatherAdapter
 import com.example.abschlussaufgabe.viewmodel.HomeViewModel
 
 
-class HomeFragment : Fragment() {
+class ArchiveFragment : Fragment() {
 
-    private lateinit var binding: HomeFragment
+    private lateinit var binding: ArchiveFragment
     private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -21,7 +22,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_arhive, container, false)
         binding.lifecycleOwner = this.viewLifecycleOwner
         return binding.root
     }
@@ -30,12 +31,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.guestList.observe(viewLifecycleOwner) {
-            binding.guestlist.adapter = GuestAdapter(it)
+            binding.viewModel.guestList = WeatherAdapter(it)
         }
 
-        binding.addGuestButton.setOnClickListener {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToAddFragment())
-        }
     }
-
 }
