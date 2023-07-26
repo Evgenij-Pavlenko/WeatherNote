@@ -13,7 +13,7 @@ import com.example.abschlussaufgabe.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: HomeFragment
+    private lateinit var binding: FragmentHo
     private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
