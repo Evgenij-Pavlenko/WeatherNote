@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussaufgabe.R
 import com.example.abschlussaufgabe.data.datamodels.Weather
+import com.example.abschlussaufgabe.ui.ArchiveFragmentDirections
 
 class ArchiveAdapter (
     private val context: Context,
@@ -36,13 +37,13 @@ class ArchiveAdapter (
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             val item = dataset[position]
 //TODO
-            holder.weatherImg = item.weatherImg
+            holder.weatherImg.setBackgroundResource(item.weatherImg)
             holder.tempValue.text = item.temp.toString()
             holder.tempData.text = item.date.toString()
 
             holder.weather.setOnClickListener {
                 holder.view.findNavController()
-                    .navigate(ArchiveFragmentDirection.actionMainFragmentToEditFragment(item.id))
+                    .navigate(ArchiveFragmentDirections.actionArhiveFragmentToDetailFragment(item.id))
             }
         }
 }

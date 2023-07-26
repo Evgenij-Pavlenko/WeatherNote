@@ -28,6 +28,12 @@
         <action
             android:id="@+id/action_detailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_arhiveFragment"
+            app:destination="@id/arhiveFragment" />
+        <argument
+            android:name="id"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/arhiveFragment"

@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.abschlussaufgabe.R
+import com.example.abschlussaufgabe.databinding.FragmentHomeBinding
 import com.example.abschlussaufgabe.viewmodel.HomeViewModel
 
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHo
+    private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -30,11 +32,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.guestList.observe(viewLifecycleOwner) {
-            binding.guestlist.adapter = GuestAdapter(it)
+//            binding.guestlist.adapter = GuestAdapter(it)
         }
 
-        binding.addGuestButton.setOnClickListener {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToAddFragment())
+        binding.rvView.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailHomeFragment())
         }
     }
 
