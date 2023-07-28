@@ -3,24 +3,25 @@ package com.example.abschlussaufgabe.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.abschlussaufgabe.data.datamodels.Weather
+import com.example.abschlussaufgabe.data.local.WeatherDatabase
 
 const val TAG = "Repository"
 
 class Repository(private val database: WeatherDatabase) {
 
-    val guestList: LiveData<List<Weather>> = database.guestDatabaseDao.getAll()
+    val guestList: LiveData<List<Weather>> = database.weatherDatabaseDao.getAll()
 
-    suspend fun insert(guest: Weather) {
+    suspend fun insert(weather: Weather) {
         try {
-            database.guestDatabaseDao.insert(guest)
+            database.weatherDatabaseDao.insert(weather)
         } catch (e: Exception) {
             Log.e(TAG,"Failed to insert into database: $e")
         }
     }
 
-    suspend fun update(guest: Weather) {
+    suspend fun update(weather: Weather) {
         try {
-            database.guestDatabaseDao.update(guest)
+            database.weatherDatabaseDao.update(weather)
         } catch (e: Exception) {
             Log.e(TAG,"Failed to update database: $e")
         }
@@ -28,7 +29,7 @@ class Repository(private val database: WeatherDatabase) {
 
     suspend fun delete(weather: Weather) {
         try {
-            database.guestDatabaseDao.deleteById(weather.id)
+            database.weatherDatabaseDao.deleteById(weather.id)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to delete from database: $e")
         }
