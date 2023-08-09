@@ -1,8 +1,10 @@
 package com.example.abschlussaufgabe.data.datamodels
 
+import android.icu.util.LocaleData
 import android.provider.ContactsContract.Data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.LocalDate
 import java.util.Date
 
 /**
@@ -14,11 +16,12 @@ import java.util.Date
 @Entity(tableName = "weather_table")
 data class Weather(
 
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    private val cityId: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val cityId: Int,
     val city: String,
     val weatherImg: Int,
     val temp: Float,
-    val date: Date
+    val date: LocalDate
 
     )
