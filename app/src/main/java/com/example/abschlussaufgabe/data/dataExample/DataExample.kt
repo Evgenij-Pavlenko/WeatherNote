@@ -1,5 +1,5 @@
 package com.example.abschlussaufgabe.data.dataExample
 
 class DataExample {
-    var date = "11.08.2023"
+    var date = "14.08.2023"
 }
