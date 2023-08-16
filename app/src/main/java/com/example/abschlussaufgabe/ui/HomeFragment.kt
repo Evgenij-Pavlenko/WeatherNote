@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.guestList.observe(viewLifecycleOwner) {
+        viewModel.weatherList.observe(viewLifecycleOwner) {
 //            binding.guestlist.adapter = GuestAdapter(it)
         }
 

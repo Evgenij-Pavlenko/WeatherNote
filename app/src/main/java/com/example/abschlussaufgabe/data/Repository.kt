@@ -9,7 +9,7 @@ const val TAG = "Repository"
 
 class Repository(private val database: WeatherDatabase) {
 
-    val guestList: LiveData<List<Weather>> = database.weatherDatabaseDao.getAll()
+    val weatherList: LiveData<List<Weather>> = database.weatherDatabaseDao.getAll()
 
     suspend fun insert(weather: Weather) {
         try {

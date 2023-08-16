@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.abschlussaufgabe.data.Repository
 import com.example.abschlussaufgabe.data.datamodels.Weather
+import com.example.abschlussaufgabe.data.local.getDatabase
 import kotlinx.coroutines.launch
 private const val TAG = "MainViewModel"
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
@@ -15,7 +16,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val  database = getDatabase(application)
     private val repository = Repository(database)
 
-    var guestList = repository.guestList
+    var weatherList = repository.weatherList
 
     private val _complete = MutableLiveData<Boolean>()
     val complete: LiveData<Boolean>
