@@ -4,5 +4,5 @@ package com.example.abschlussaufgabe.data.datamodels
  * @param weatherList die Liste aus Weather
  */
 data class WeatherList(
-    private  val weatherList: List<Weather>
+    private val weatherList: List<Weather>
 )
