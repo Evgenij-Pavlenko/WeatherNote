@@ -9,12 +9,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.abschlussaufgabe.data.Repository
 import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.data.local.getDatabase
+import com.example.abschlussaufgabe.data.remote.ApiService
 import kotlinx.coroutines.launch
 private const val TAG = "MainViewModel"
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val  database = getDatabase(application)
-    private val repository = Repository(database)
+    private val repository = Repository(database, ApiService)
 
     var weatherList = repository.weatherList
 

@@ -10,6 +10,7 @@ import retrofit2.http.Query
 
 
 // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
 const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 const val API_KEY = "7833fe0081beeb67548335c7497c54a2"
 
