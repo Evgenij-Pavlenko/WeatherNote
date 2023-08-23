@@ -23,21 +23,21 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val complete: LiveData<Boolean>
         get() = _complete
 
-    fun insertGuest(weather: Weather) {
+    fun insertWeather(weather: Weather) {
         viewModelScope.launch {
             repository.insert(weather)
             _complete.value = true
         }
     }
 
-    fun updateGuest(weather: Weather) {
+    fun updateWeather(weather: Weather) {
         viewModelScope.launch {
             repository.update(weather)
             _complete.value = true
         }
     }
 
-    fun deleteGuest(weather: Weather) {
+    fun deleteWeather(weather: Weather) {
         viewModelScope.launch {
             Log.e(TAG, "Deleted user with id ${weather.id}")
             repository.delete(weather)

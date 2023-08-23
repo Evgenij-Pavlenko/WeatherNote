@@ -19,7 +19,7 @@ fun getDatabase(context: Context): WeatherDatabase {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 WeatherDatabase::class.java,
-                "drink database"
+                "weather_database"
             ).build()
         }
     }
