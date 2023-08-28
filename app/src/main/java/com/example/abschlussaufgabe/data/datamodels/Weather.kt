@@ -22,6 +22,5 @@ data class Weather(
     val city: String,
     val weatherImg: Int,
     val temp: Float,
-    val date: String
-
+    val date: Date
     )
