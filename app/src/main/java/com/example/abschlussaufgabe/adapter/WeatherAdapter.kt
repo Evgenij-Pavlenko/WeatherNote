@@ -20,6 +20,7 @@ class WeatherAdapter(
     class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         var weatherImg: TextView = view.findViewById(R.id.iv_weather)
         var tempValue: TextView = view.findViewById(R.id.tv_temp_value)
+        var tempDate: TextView = view.findViewById(R.id.tv_data)
         val weather: ConstraintLayout = view.findViewById(R.id.cl_item)
     }
 
@@ -38,6 +39,7 @@ class WeatherAdapter(
 //TODO
         holder.weatherImg.setBackgroundResource(item.weatherImg)
         holder.tempValue.text = item.temp.toString()
+        holder.tempDate.text = item.date.toString()
 
 //        holder.weather.setOnClickListener {
 //            holder.view.findNavController()
