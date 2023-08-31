@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussaufgabe.R
+import com.example.abschlussaufgabe.adapter.WeatherAdapter
+import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.databinding.FragmentHomeBinding
 import com.example.abschlussaufgabe.viewmodel.HomeViewModel
 
@@ -31,8 +33,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         viewModel.weatherList.observe(viewLifecycleOwner) {
-//            binding.guestlist.adapter = GuestAdapter(it)
+            binding.rvView.adapter = WeatherAdapter(it)
+        }
+        viewModel.weather.observe(viewLifecycleOwner){
+            binding.tvTempGross.text = it.main.temp.toString() + " C"
+            binding.tvCity.text = it.name
         }
 
         binding.rvView.setOnClickListener {

@@ -12,15 +12,24 @@ const val TAG = "Repository"
 
 class Repository(private val database: WeatherDatabase, private val api: ApiService) {
 
-    val weatherList: LiveData<List<Weather>> = database.weatherDatabaseDao.getAll()
+   private val _weatherList = MutableLiveData<List<Weather>>()
+    val weatherList: LiveData<List<Weather>>
+        get() = _weatherList
 
     private val _weather = MutableLiveData<Weather>()
     val weather: LiveData<Weather>
         get() = _weather
 
+    suspend fun getCurentWeather(city: String) {
+        try {
+            _weather.value = api.retrofitService.getCurentWeather(city, API_KEY)
+        } catch (e: Exception) {
+            Log.e("AppRepository", "Fehler beim Daten laden: $e")
+        }
+    }
     suspend fun getWeather(city: String) {
         try {
-            _weather.value = api.retrofitService.getCharacters(city, API_KEY)
+            _weatherList.value = api.retrofitService.getWeather(city, API_KEY).list
         } catch (e: Exception) {
             Log.e("AppRepository", "Fehler beim Daten laden: $e")
         }

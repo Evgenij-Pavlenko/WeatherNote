@@ -38,7 +38,7 @@ class DetailFragment : Fragment() {
         }
 
         binding.btnArchive.setOnClickListener {
-            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToArhiveFragment())
+            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToArchiveFragment())
         }
     }
 

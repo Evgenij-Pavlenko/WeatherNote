@@ -13,7 +13,6 @@ import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.ui.ArchiveFragmentDirections
 
 class ArchiveAdapter (
-    private val context: Context,
     private val dataset: List<Weather>
     ) : RecyclerView.Adapter<ArchiveAdapter.ItemViewHolder>() {
 
@@ -37,9 +36,9 @@ class ArchiveAdapter (
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             val item = dataset[position]
 //TODO
-            holder.weatherImg.setBackgroundResource(item.weatherImg)
-            holder.tempValue.text = item.temp.toString()
-            holder.tempData.text = item.date.toString()
+          //  holder.weatherImg.setBackgroundResource(item.weatherImg)
+          //  holder.tempValue.text = item.temp.toString()
+            //holder.tempData.text = item.dt_txt.toString()
 
             holder.weather.setOnClickListener {
                 holder.view.findNavController()

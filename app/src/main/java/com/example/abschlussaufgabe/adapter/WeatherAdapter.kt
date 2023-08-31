@@ -1,6 +1,8 @@
 package com.example.abschlussaufgabe.adapter
 
 import android.content.Context
+import android.icu.text.RelativeDateTimeFormatter.Direction
+import android.text.Layout.Directions
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,24 +12,21 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussaufgabe.R
 import com.example.abschlussaufgabe.data.datamodels.Weather
-import com.example.abschlussaufgabe.ui.HomeFragment
+import com.example.abschlussaufgabe.databinding.ListWeatherBinding
+import com.example.abschlussaufgabe.ui.DetailFragmentDirections
+import com.example.abschlussaufgabe.ui.HomeFragmentDirections
 
 class WeatherAdapter(
-    private val context: Context,
     private val dataset: List<Weather>
 ) : RecyclerView.Adapter<WeatherAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        var weatherImg: TextView = view.findViewById(R.id.iv_weather)
-        var tempValue: TextView = view.findViewById(R.id.tv_temp_value)
-        var tempDate: TextView = view.findViewById(R.id.tv_data)
-        val weather: ConstraintLayout = view.findViewById(R.id.cl_item)
+    class ItemViewHolder(val binding: ListWeatherBinding) : RecyclerView.ViewHolder(binding.root) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val adapterLayout =
-            LayoutInflater.from(parent.context).inflate(R.layout.list_weather, parent, false)
-        return ItemViewHolder(adapterLayout)
+        val binding =
+            ListWeatherBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -36,10 +35,14 @@ class WeatherAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-//TODO
-        holder.weatherImg.setBackgroundResource(item.weatherImg)
-        holder.tempValue.text = item.temp.toString()
-        holder.tempDate.text = item.date.toString()
+
+        holder.binding.tvData.text = item.dt_txt
+        holder.binding.tvTempValue.text = item.main.temp.toString() + " C"
+        holder.binding.clItem.setOnClickListener{
+            holder.itemView.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.id))
+        }
+
 
 //        holder.weather.setOnClickListener {
 //            holder.view.findNavController()

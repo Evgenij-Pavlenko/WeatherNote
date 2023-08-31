@@ -8,13 +8,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.abschlussaufgabe.R
-import com.example.abschlussaufgabe.databinding.FragmentArhiveBinding
+import com.example.abschlussaufgabe.adapter.ArchiveAdapter
+import com.example.abschlussaufgabe.adapter.WeatherAdapter
+import com.example.abschlussaufgabe.databinding.FragmentArchiveBinding
 import com.example.abschlussaufgabe.viewmodel.HomeViewModel
 
 
 class ArchiveFragment : Fragment() {
 
-    private lateinit var binding: FragmentArhiveBinding
+    private lateinit var binding: FragmentArchiveBinding
     private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -22,7 +24,7 @@ class ArchiveFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_arhive, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_archive, container, false)
         binding.lifecycleOwner = this.viewLifecycleOwner
         return binding.root
     }
@@ -31,7 +33,7 @@ class ArchiveFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.weatherList.observe(viewLifecycleOwner) {
-//            binding.rvArchive = WeatherAdapter(it)
+            binding.rvArchive.adapter = ArchiveAdapter(it)
         }
 
     }

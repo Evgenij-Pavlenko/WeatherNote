@@ -29,19 +29,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="48dp"
             android:text="@string/save"
-            app:layout_constraintEnd_toStartOf="@+id/btn_archive"
-            tools:layout_editor_absoluteY="569dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_archive" />
 
         <Button
             android:id="@+id/btn_archive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
             android:text="@string/archive"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextText"
             app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="@+id/editTextText"
-            tools:layout_editor_absoluteY="569dp" />
+            app:layout_constraintStart_toStartOf="@+id/editTextText" />
 
         <Button
             android:id="@+id/btn_home"
