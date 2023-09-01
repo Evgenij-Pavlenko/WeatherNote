@@ -17,7 +17,7 @@ class ArchiveAdapter (
     ) : RecyclerView.Adapter<ArchiveAdapter.ItemViewHolder>() {
 
         class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-            var weatherImg: TextView = view.findViewById(R.id.iv_archive)
+//            var weatherImg: TextView = view.findViewById(R.id.iv_archive)
             var tempValue: TextView = view.findViewById(R.id.tv_arhive)
             var tempData: TextView = view.findViewById(R.id.tv_data)
             val weather: ConstraintLayout = view.findViewById(R.id.cl_archive)
@@ -35,10 +35,10 @@ class ArchiveAdapter (
 
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             val item = dataset[position]
-//TODO
-          //  holder.weatherImg.setBackgroundResource(item.weatherImg)
-          //  holder.tempValue.text = item.temp.toString()
-            //holder.tempData.text = item.dt_txt.toString()
+
+//            holder.weatherImg.setBackgroundResource(item.)
+            holder.tempValue.text = item.main.temp.toString()
+            holder.tempData.text = item.dt_txt.format("YY.MM.DD")
 
             holder.weather.setOnClickListener {
                 holder.view.findNavController()

@@ -62,7 +62,8 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Name"
+
+            android:hint="Ihre Note"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
