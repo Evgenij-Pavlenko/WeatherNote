@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.abschlussaufgabe.R
+import com.example.abschlussaufgabe.data.local.getDatabase
 import com.example.abschlussaufgabe.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -32,6 +33,10 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnSave.setOnClickListener{
+            getDatabase( )
+        }
 
         binding.btnHome.setOnClickListener {
             findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToHomeFragment())
