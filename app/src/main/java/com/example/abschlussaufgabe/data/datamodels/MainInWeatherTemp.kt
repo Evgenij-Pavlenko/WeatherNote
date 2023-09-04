@@ -6,5 +6,5 @@ package com.example.abschlussaufgabe.data.datamodels
  * @param temp die die Temp des City
  */
 data class MainInWeatherTemp(
-    val temp: Float
+    var temp: Float
 )

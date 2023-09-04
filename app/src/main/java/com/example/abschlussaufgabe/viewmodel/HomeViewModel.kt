@@ -8,7 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.abschlussaufgabe.data.Repository
 import com.example.abschlussaufgabe.data.datamodels.Weather
+import com.example.abschlussaufgabe.data.datamodels.WeatherWithNote
 import com.example.abschlussaufgabe.data.local.getDatabase
+import com.example.abschlussaufgabe.data.local.getDatabaseWithNote
 import com.example.abschlussaufgabe.data.remote.ApiService
 import kotlinx.coroutines.launch
 
@@ -16,7 +18,7 @@ private const val TAG = "MainViewModel"
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val database = getDatabase(application)
+    private val database = getDatabaseWithNote(application)
     private val repository = Repository(database, ApiService)
 
     var weatherList = repository.weatherList
@@ -36,24 +38,24 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun insertWeather(weather: Weather) {
+    fun insertWeather(weatherWithNote: WeatherWithNote) {
         viewModelScope.launch {
-            repository.insert(weather)
+            repository.insert(weatherWithNote)
             _complete.value = true
         }
     }
 
-    fun updateWeather(weather: Weather) {
+    fun updateWeather(weatherWithNote: WeatherWithNote) {
         viewModelScope.launch {
-            repository.update(weather)
+            repository.update(weatherWithNote)
             _complete.value = true
         }
     }
 
-    fun deleteWeather(weather: Weather) {
+    fun deleteWeather(weatherWithNote: WeatherWithNote) {
         viewModelScope.launch {
-            Log.e(TAG, "Deleted user with id ${weather.id}")
-            repository.delete(weather)
+            Log.e(TAG, "Deleted user with id ${weatherWithNote.id}")
+            repository.delete(weatherWithNote)
             _complete.value = true
         }
     }

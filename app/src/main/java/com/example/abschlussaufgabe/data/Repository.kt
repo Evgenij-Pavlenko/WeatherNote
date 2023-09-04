@@ -4,13 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.abschlussaufgabe.data.datamodels.Weather
+import com.example.abschlussaufgabe.data.datamodels.WeatherWithNote
 import com.example.abschlussaufgabe.data.local.WeatherDatabase
+import com.example.abschlussaufgabe.data.local.WeatherWithNoteDatabase
 import com.example.abschlussaufgabe.data.remote.API_KEY
 import com.example.abschlussaufgabe.data.remote.ApiService
 
 const val TAG = "Repository"
 
-class Repository(private val database: WeatherDatabase, private val api: ApiService) {
+class Repository(private val database: WeatherWithNoteDatabase, private val api: ApiService) {
 
    private val _weatherList = MutableLiveData<List<Weather>>()
     val weatherList: LiveData<List<Weather>>
@@ -35,25 +37,33 @@ class Repository(private val database: WeatherDatabase, private val api: ApiServ
         }
     }
 
-    suspend fun insert(weather: Weather) {
+    suspend fun getWeatherWi(city: String) {
         try {
-            database.weatherDatabaseDao.insert(weather)
+            _weatherList.value = api.retrofitService.getWeather(city, API_KEY).list
+        } catch (e: Exception) {
+            Log.e("AppRepository", "Fehler beim Daten laden: $e")
+        }
+    }
+
+    suspend fun insert(weatherWithNote: WeatherWithNote ) {
+        try {
+            database.weatherWithNoteDatabaseDao.insert(weatherWithNote)
         } catch (e: Exception) {
             Log.e(TAG,"Failed to insert into database: $e")
         }
     }
 
-    suspend fun update(weather: Weather) {
+    suspend fun update(weatherWithNote: WeatherWithNote) {
         try {
-            database.weatherDatabaseDao.update(weather)
+            database.weatherWithNoteDatabaseDao.update(weatherWithNote)
         } catch (e: Exception) {
             Log.e(TAG,"Failed to update database: $e")
         }
     }
 
-    suspend fun delete(weather: Weather) {
+    suspend fun delete(weatherWithNote: WeatherWithNote) {
         try {
-            database.weatherDatabaseDao.deleteById(weather.id)
+            database.weatherWithNoteDatabaseDao.deleteById(weatherWithNote.id)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to delete from database: $e")
         }

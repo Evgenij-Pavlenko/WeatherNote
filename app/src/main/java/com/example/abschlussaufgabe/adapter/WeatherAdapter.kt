@@ -40,7 +40,7 @@ class WeatherAdapter(
         holder.binding.tvTempValue.text = item.main.temp.toString() + " C"
         holder.binding.clItem.setOnClickListener{
             holder.itemView.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.id))
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.main.temp,item.dt_txt,item.name, ""))
         }
 
 
