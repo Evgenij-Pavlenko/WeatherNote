@@ -13,6 +13,7 @@ import com.example.abschlussaufgabe.R
 import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.data.datamodels.WeatherWithNote
 import com.example.abschlussaufgabe.ui.ArchiveFragmentDirections
+import java.util.Date
 
 class ArchiveAdapter (
     private val dataset: List<WeatherWithNote>
@@ -40,7 +41,7 @@ class ArchiveAdapter (
 
 //            holder.weatherImg.setBackgroundResource(item.)
             holder.tempValue.text = item.temp.toString()
-            holder.tempData.text = item.dt_txt.format("YY.MM.DD")
+            holder.tempData.text = item.dt_txt.format("YY.MM.DD hh:mm")
 
             Log.e("Adapter", "LOG CITY0 ${item.city}")
             holder.weatherWithNote.setOnClickListener {

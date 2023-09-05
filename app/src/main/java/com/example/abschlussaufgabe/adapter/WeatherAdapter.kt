@@ -42,7 +42,7 @@ class WeatherAdapter(
         Log.e("AdapterW", "NAME0: ${item.toString()}")
 
 
-        holder.binding.tvData.text = item.dt_txt.format("YY.MM.DD")
+        holder.binding.tvData.text = item.dt_txt.format("yyyy.MM.DD hh:mm")
         holder.binding.tvTempValue.text = item.main.temp.toString() + " C"
         holder.binding.clItem.setOnClickListener {
             Log.e("AdapterW", "NAME: ${item.name}")
