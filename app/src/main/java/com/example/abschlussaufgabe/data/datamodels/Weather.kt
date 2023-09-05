@@ -18,8 +18,8 @@ data class Weather(
     /* val cityId: Int,
 
     val weatherImg: Int,*/
-    val name: String = "",
+    var name: String = "",
     val main: MainInWeatherTemp,
-    val dt_txt: String = ""
+    var dt_txt: String = ""
 
     )

@@ -1,6 +1,7 @@
 package com.example.abschlussaufgabe.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,7 @@ class ArchiveAdapter (
 //            var weatherImg: TextView = view.findViewById(R.id.iv_archive)
             var tempValue: TextView = view.findViewById(R.id.tv_arhive)
             var tempData: TextView = view.findViewById(R.id.tv_data)
-            val weather: ConstraintLayout = view.findViewById(R.id.cl_archive)
+            val weatherWithNote: ConstraintLayout = view.findViewById(R.id.cl_archive)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -38,13 +39,16 @@ class ArchiveAdapter (
             val item = dataset[position]
 
 //            holder.weatherImg.setBackgroundResource(item.)
-            holder.tempValue.text = item.weather.main.temp.toString()
-            holder.tempData.text = item.weather.dt_txt.format("YY.MM.DD")
+            holder.tempValue.text = item.temp.toString()
+            holder.tempData.text = item.dt_txt.format("YY.MM.DD")
 
-            holder.weather.setOnClickListener {
+            Log.e("Adapter", "LOG CITY0 ${item.city}")
+            holder.weatherWithNote.setOnClickListener {
+                Log.e("Adapter", "LOG CITY ${item.city}")
                 holder.view.findNavController()
                     .navigate(ArchiveFragmentDirections.actionArhiveFragmentToDetailFragment(
-                        item.weather.main.temp,item.weather.dt_txt,item.weather.name, item.note))
+                        item.temp,item.dt_txt,item.city, item.note))
+                Log.e("Adapter", "LOG CITY2 ${item.city}")
             }
         }
 }

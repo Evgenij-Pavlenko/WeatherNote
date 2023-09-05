@@ -32,7 +32,7 @@ class ArchiveFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.weatherList.observe(viewLifecycleOwner) {
+        viewModel.weatherListWithNote.observe(viewLifecycleOwner) {
             binding.rvArchive.adapter = ArchiveAdapter(it)
         }
 

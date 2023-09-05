@@ -14,13 +14,23 @@ const val TAG = "Repository"
 
 class Repository(private val database: WeatherWithNoteDatabase, private val api: ApiService) {
 
-   private val _weatherList = MutableLiveData<List<Weather>>()
+    private val _weatherList = MutableLiveData<List<Weather>>()
+
     val weatherList: LiveData<List<Weather>>
         get() = _weatherList
 
     private val _weather = MutableLiveData<Weather>()
     val weather: LiveData<Weather>
         get() = _weather
+
+    private val _weatherListWithNote = MutableLiveData<List<WeatherWithNote>>()
+
+    val weatherListWithNote: LiveData<List<WeatherWithNote>>
+        get() = _weatherListWithNote
+
+    private val _weatherWithNote = MutableLiveData<WeatherWithNote>()
+    val weatherWithNote: LiveData<WeatherWithNote>
+        get() = _weatherWithNote
 
     suspend fun getCurentWeather(city: String) {
         try {
@@ -29,6 +39,7 @@ class Repository(private val database: WeatherWithNoteDatabase, private val api:
             Log.e("AppRepository", "Fehler beim Daten laden: $e")
         }
     }
+
     suspend fun getWeather(city: String) {
         try {
             _weatherList.value = api.retrofitService.getWeather(city, API_KEY).list
@@ -45,11 +56,12 @@ class Repository(private val database: WeatherWithNoteDatabase, private val api:
         }
     }
 
-    suspend fun insert(weatherWithNote: WeatherWithNote ) {
+    suspend fun insert(weatherWithNote: WeatherWithNote) {
         try {
+            Log.e(TAG, "INSERT")
             database.weatherWithNoteDatabaseDao.insert(weatherWithNote)
         } catch (e: Exception) {
-            Log.e(TAG,"Failed to insert into database: $e")
+            Log.e(TAG, "Failed to insert into database: $e")
         }
     }
 
@@ -57,7 +69,7 @@ class Repository(private val database: WeatherWithNoteDatabase, private val api:
         try {
             database.weatherWithNoteDatabaseDao.update(weatherWithNote)
         } catch (e: Exception) {
-            Log.e(TAG,"Failed to update database: $e")
+            Log.e(TAG, "Failed to update database: $e")
         }
     }
 

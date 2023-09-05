@@ -19,6 +19,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by activityViewModels()
+    var cityName :String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,15 +34,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-        viewModel.weatherList.observe(viewLifecycleOwner) {
-            binding.rvView.adapter = WeatherAdapter(it)
-        }
         viewModel.weather.observe(viewLifecycleOwner){
             binding.tvTempGross.text = it.main.temp.toString() + " C"
             binding.tvCity.text = it.name
+            cityName = it.name
         }
+
+        viewModel.weatherList.observe(viewLifecycleOwner) {
+            binding.rvView.adapter = WeatherAdapter(it, cityName)
+        }
+
 
         binding.rvView.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailHomeFragment())

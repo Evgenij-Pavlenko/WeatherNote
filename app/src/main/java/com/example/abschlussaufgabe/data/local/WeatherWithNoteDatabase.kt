@@ -24,7 +24,7 @@ fun getDatabaseWithNote(context: Context): WeatherWithNoteDatabase {
                 context.applicationContext,
                 WeatherWithNoteDatabase::class.java,
                 "weatherWithNote_database"
-            ).build()
+            ).allowMainThreadQueries().build()
         }
     }
     return INSTANCE

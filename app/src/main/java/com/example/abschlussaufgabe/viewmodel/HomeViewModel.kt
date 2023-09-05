@@ -15,6 +15,7 @@ import com.example.abschlussaufgabe.data.remote.ApiService
 import kotlinx.coroutines.launch
 
 private const val TAG = "MainViewModel"
+private const val CITY = "Berlin"
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -23,6 +24,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     var weatherList = repository.weatherList
     var weather = repository.weather
+    var weatherListWithNote = repository.weatherListWithNote
 
     private val _complete = MutableLiveData<Boolean>()
     val complete: LiveData<Boolean>
@@ -31,10 +33,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     init {
         //
         viewModelScope.launch {
-            repository.getWeather("Berlin")
+            repository.getWeather(CITY)
         }
         viewModelScope.launch {
-            repository.getCurentWeather("Berlin")
+            repository.getCurentWeather(CITY)
         }
     }
 

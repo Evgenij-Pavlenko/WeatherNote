@@ -3,6 +3,7 @@ package com.example.abschlussaufgabe.adapter
 import android.content.Context
 import android.icu.text.RelativeDateTimeFormatter.Direction
 import android.text.Layout.Directions
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,8 @@ import com.example.abschlussaufgabe.ui.DetailFragmentDirections
 import com.example.abschlussaufgabe.ui.HomeFragmentDirections
 
 class WeatherAdapter(
-    private val dataset: List<Weather>
+    private val dataset: List<Weather>,
+    val cityName: String
 ) : RecyclerView.Adapter<WeatherAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(val binding: ListWeatherBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -35,12 +37,24 @@ class WeatherAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
+        Log.e("AdapterW", "NAME0: ${cityName}")
 
-        holder.binding.tvData.text = item.dt_txt
+        Log.e("AdapterW", "NAME0: ${item.toString()}")
+
+
+        holder.binding.tvData.text = item.dt_txt.format("YY.MM.DD")
         holder.binding.tvTempValue.text = item.main.temp.toString() + " C"
-        holder.binding.clItem.setOnClickListener{
+        holder.binding.clItem.setOnClickListener {
+            Log.e("AdapterW", "NAME: ${item.name}")
             holder.itemView.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.main.temp,item.dt_txt,item.name, ""))
+                .navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        item.main.temp,
+                        item.dt_txt,
+                        cityName,
+                        ""
+                    )
+                )
         }
 
 
