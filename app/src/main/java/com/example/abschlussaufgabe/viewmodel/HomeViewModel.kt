@@ -7,9 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.abschlussaufgabe.data.Repository
-import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.data.datamodels.WeatherWithNote
-import com.example.abschlussaufgabe.data.local.getDatabase
 import com.example.abschlussaufgabe.data.local.getDatabaseWithNote
 import com.example.abschlussaufgabe.data.remote.ApiService
 import kotlinx.coroutines.launch
@@ -21,6 +19,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val database = getDatabaseWithNote(application)
     private val repository = Repository(database, ApiService)
+//    val list: List<WeatherWithNote> = repository.getWeatherWithNote()
 
     var weatherList = repository.weatherList
     var weather = repository.weather
@@ -38,6 +37,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             repository.getCurentWeather(CITY)
         }
+        viewModelScope.launch {
+            repository.getWeatherWithNote()
+        }
+
     }
 
     fun insertWeather(weatherWithNote: WeatherWithNote) {

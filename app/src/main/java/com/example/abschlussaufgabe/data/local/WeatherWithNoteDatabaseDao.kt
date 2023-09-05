@@ -18,7 +18,7 @@ interface WeatherWithNoteDatabaseDao {
      fun insert(weatherWithNote: WeatherWithNote)
 
     @Query("SELECT * FROM weatherWithNote_table")
-    fun getAll(): LiveData<List<WeatherWithNote>>
+    fun getAll(): List<WeatherWithNote>
 
     @Update
     fun update(weatherWithNote: WeatherWithNote)

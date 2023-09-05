@@ -49,15 +49,17 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        note = binding.editTextText.text.toString()
+binding.editTextText.setText(note)
         binding.tvDetailCity.text = name
         binding.tvDetailData.text = dt_txt.format("YYYY.MM.DD")
         binding.tvDetailTemp.text = temp.toString()
-        weatherWithNote = WeatherWithNote(1, temp, name, dt_txt, note)
         Log.e("Detail", "note: $note")
 
 
         binding.btnSave.setOnClickListener {
+            note = binding.editTextText.text.toString()
+            weatherWithNote = WeatherWithNote(0, temp, name, dt_txt, note)
+
             viewmodel.insertWeather(weatherWithNote)
             Log.e("Detail1", "note: $note")
 

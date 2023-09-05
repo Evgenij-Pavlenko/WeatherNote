@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.data.datamodels.WeatherWithNote
-import com.example.abschlussaufgabe.data.local.WeatherDatabase
 import com.example.abschlussaufgabe.data.local.WeatherWithNoteDatabase
 import com.example.abschlussaufgabe.data.remote.API_KEY
 import com.example.abschlussaufgabe.data.remote.ApiService
@@ -24,7 +23,6 @@ class Repository(private val database: WeatherWithNoteDatabase, private val api:
         get() = _weather
 
     private val _weatherListWithNote = MutableLiveData<List<WeatherWithNote>>()
-
     val weatherListWithNote: LiveData<List<WeatherWithNote>>
         get() = _weatherListWithNote
 
@@ -48,9 +46,9 @@ class Repository(private val database: WeatherWithNoteDatabase, private val api:
         }
     }
 
-    suspend fun getWeatherWi(city: String) {
+    suspend fun getWeatherWithNote() {
         try {
-            _weatherList.value = api.retrofitService.getWeather(city, API_KEY).list
+            _weatherListWithNote.value = database.weatherWithNoteDatabaseDao.getAll()
         } catch (e: Exception) {
             Log.e("AppRepository", "Fehler beim Daten laden: $e")
         }
