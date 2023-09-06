@@ -24,6 +24,7 @@ class ArchiveAdapter(
 
 
     class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        //Alle parameter für Activity
         var tempValue: TextView = view.findViewById(R.id.tv_temp_archive)
         var tempData: TextView = view.findViewById(R.id.tv_archive_date)
         var tempText: TextView = view.findViewById(R.id.tv_arhive_note)
@@ -48,12 +49,15 @@ class ArchiveAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
+        // Date und Time with formatierung (String without secunden)
         var dateTime = item.dt_txt.substring(0, item.dt_txt.length - 3).replace('-', '.')
 
+        //hardcode((
         holder.tempValue.text = item.temp.toString() + " °C"
         holder.tempText.text = item.note
         holder.tempData.text = dateTime
 
+        // Navigate from Archive Fragment to Detail Fragment
         holder.weatherWithNote.setOnClickListener {
             holder.view.findNavController()
                 .navigate(

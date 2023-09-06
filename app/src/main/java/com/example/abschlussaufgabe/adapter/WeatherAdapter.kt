@@ -41,12 +41,15 @@ class WeatherAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
+
+        // Date und Time with formatierung (String without secunden)
         var dateTime = item.dt_txt.substring(0, item.dt_txt.length - 3).replace('-', '.')
 
-        holder.binding.tvData.text =dateTime
+        holder.binding.tvData.text = dateTime
         holder.binding.tvTempValue.text = item.main.temp.toString() + " °C"
         holder.binding.clItem.setOnClickListener {
 
+            // Navigate from Home Fragment to Detail Fragment
             holder.itemView.findNavController()
                 .navigate(
                     HomeFragmentDirections.actionHomeFragmentToDetailFragment(
@@ -57,11 +60,5 @@ class WeatherAdapter(
                     )
                 )
         }
-
-
-//        holder.weather.setOnClickListener {
-//            holder.view.findNavController()
-//                .navigate(Direction.actionMainFragmentToEditFragment(item.id))
-//        }
     }
 }

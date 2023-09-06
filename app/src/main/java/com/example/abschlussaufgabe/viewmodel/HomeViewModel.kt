@@ -19,8 +19,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val database = getDatabaseWithNote(application)
     private val repository = Repository(database, ApiService)
-//    val list: List<WeatherWithNote> = repository.getWeatherWithNote()
-
+    
     var weatherList = repository.weatherList
     var weather = repository.weather
     var weatherListWithNote = repository.weatherListWithNote
@@ -40,11 +39,13 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         loadWeatherWithNote()
 
     }
- fun loadWeatherWithNote(){
-     viewModelScope.launch {
-         repository.getWeatherWithNote()
-     }
- }
+
+    fun loadWeatherWithNote() {
+        viewModelScope.launch {
+            repository.getWeatherWithNote()
+        }
+    }
+
     fun insertWeather(weatherWithNote: WeatherWithNote) {
         viewModelScope.launch {
             repository.insert(weatherWithNote)

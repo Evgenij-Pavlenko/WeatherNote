@@ -9,21 +9,18 @@ import kotlinx.serialization.json.Json
 import java.util.Date
 
 class Converters {
+
+    //Converter Date to DB and back
     @TypeConverter
     fun fromDate(value: Date) = Json.encodeToString(value)
 
     @TypeConverter
     fun toDate(value: String) = Json.decodeFromString<Date>(value)
 
+    // Converter tempe from Class to DB and back
     @TypeConverter
-    fun fromMainTemp (value: MainInWeatherTemp) = Json.encodeToString(value)
+    fun fromMainTemp(value: MainInWeatherTemp) = Json.encodeToString(value)
 
     @TypeConverter
     fun toMainTemp(value: String) = Json.decodeFromString<MainInWeatherTemp>(value)
-
-    @TypeConverter
-    fun fromWeather(value: Weather) = Json.encodeToString(value)
-
-    @TypeConverter
-    fun toWeather(value: String) = Json.decodeFromString<Weather>(value)
 }

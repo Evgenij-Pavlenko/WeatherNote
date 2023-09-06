@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.data.datamodels.WeatherWithNote
 import com.example.abschlussaufgabe.data.local.WeatherWithNoteDatabase
-import com.example.abschlussaufgabe.data.remote.API_KEY
 import com.example.abschlussaufgabe.data.remote.ApiService
+import com.example.abschlussaufgabe.helper.API_KEY
 
 const val TAG = "Repository"
 
