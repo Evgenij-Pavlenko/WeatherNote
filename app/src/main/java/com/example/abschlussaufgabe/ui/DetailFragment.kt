@@ -52,28 +52,28 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Date und Time with format (String without secunden)
         var dateTime = dt_txt.substring(0, dt_txt.length - 3).replace('-', '.')
 
         binding.editTextText.setText(note)
         binding.tvDetailCity.text = name
         binding.tvDetailData.text = dateTime
         binding.tvDetailTemp.text = temp.toString() + " °C"
-        Log.e("Detail", "note: $note")
 
-
+        // Save weather with note to Archive and go to Archive
         binding.btnSave.setOnClickListener {
             note = binding.editTextText.text.toString()
             weatherWithNote = WeatherWithNote(0, temp, name, dt_txt, note)
-
             viewmodel.insertWeather(weatherWithNote)
-            Log.e("Detail1", "note: $note")
-
+            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToArchiveFragment())
         }
 
+        // Go to Home
         binding.btnHome.setOnClickListener {
             findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToHomeFragment())
         }
 
+        // Go to Archive
         binding.btnArchive.setOnClickListener {
             findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToArchiveFragment())
         }

@@ -29,9 +29,11 @@ private val retrofit = Retrofit.Builder()
 
 interface WeatherApiService {
 
-    //
+    // Curently weather
     @GET("weather?units=metric")
     suspend fun getCurentWeather(@Query("q") city: String, @Query("appid") key: String): Weather
+
+    // Weather List
     @GET("forecast?units=metric")
     suspend fun getWeather(@Query("q") city: String, @Query("appid") key: String): WeatherResponse
 }

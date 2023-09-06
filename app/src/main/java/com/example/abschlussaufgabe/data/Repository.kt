@@ -56,7 +56,6 @@ class Repository(private val database: WeatherWithNoteDatabase, private val api:
 
     suspend fun insert(weatherWithNote: WeatherWithNote) {
         try {
-            Log.e(TAG, "INSERT")
             database.weatherWithNoteDatabaseDao.insert(weatherWithNote)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to insert into database: $e")

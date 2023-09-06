@@ -43,6 +43,8 @@ class ArchiveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Date und Time with format (String without secunden)
         val adapter = viewModel.weatherListWithNote.value?.let { ArchiveAdapter(it, viewModel) }
         binding.rvArchive.adapter = adapter
 
@@ -51,6 +53,7 @@ class ArchiveFragment : Fragment() {
             adapter?.removeWeather(position)
         }.attachToRecyclerView(binding.rvArchive)
 
+        // to RecycledView - get Weather with Note List
         viewModel.weatherListWithNote.observe(viewLifecycleOwner) {
             binding.rvArchive.adapter = ArchiveAdapter(it, viewModel)
         }

@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
             binding.rvView.adapter = WeatherAdapter(it, cityName)
         }
 
-
+        // Go to Detail
         binding.rvView.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailHomeFragment())
         }

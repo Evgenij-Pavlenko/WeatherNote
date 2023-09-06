@@ -49,7 +49,7 @@ class ArchiveAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
-        // Date und Time with formatierung (String without secunden)
+        // Date und Time with format (String without secunden)
         var dateTime = item.dt_txt.substring(0, item.dt_txt.length - 3).replace('-', '.')
 
         //hardcode((
