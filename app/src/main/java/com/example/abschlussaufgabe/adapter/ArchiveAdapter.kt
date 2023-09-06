@@ -21,8 +21,9 @@ class ArchiveAdapter (
 
         class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 //            var weatherImg: TextView = view.findViewById(R.id.iv_archive)
-            var tempValue: TextView = view.findViewById(R.id.tv_arhive)
-            var tempData: TextView = view.findViewById(R.id.tv_data)
+            var tempValue: TextView = view.findViewById(R.id.tv_temp_archive)
+            var tempData: TextView = view.findViewById(R.id.tv_archive_date)
+            var tempText: TextView = view.findViewById(R.id.tv_arhive_note)
             val weatherWithNote: ConstraintLayout = view.findViewById(R.id.cl_archive)
         }
 
@@ -41,15 +42,13 @@ class ArchiveAdapter (
 
 //            holder.weatherImg.setBackgroundResource(item.)
             holder.tempValue.text = item.temp.toString()
+            holder.tempText.text = item.note
             holder.tempData.text = item.dt_txt.format("YY.MM.DD hh:mm")
 
-            Log.e("Adapter", "LOG CITY0 ${item.city}")
             holder.weatherWithNote.setOnClickListener {
-                Log.e("Adapter", "LOG CITY ${item.city}")
                 holder.view.findNavController()
                     .navigate(ArchiveFragmentDirections.actionArhiveFragmentToDetailFragment(
                         item.temp,item.dt_txt,item.city, item.note))
-                Log.e("Adapter", "LOG CITY2 ${item.city}")
             }
         }
 }
