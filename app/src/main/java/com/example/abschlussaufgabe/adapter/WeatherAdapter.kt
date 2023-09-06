@@ -17,6 +17,8 @@ import com.example.abschlussaufgabe.data.datamodels.Weather
 import com.example.abschlussaufgabe.databinding.ListWeatherBinding
 import com.example.abschlussaufgabe.ui.DetailFragmentDirections
 import com.example.abschlussaufgabe.ui.HomeFragmentDirections
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 class WeatherAdapter(
     private val dataset: List<Weather>,
@@ -39,15 +41,12 @@ class WeatherAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-        Log.e("AdapterW", "NAME0: ${cityName}")
+        var dateTime = item.dt_txt.substring(0, item.dt_txt.length - 3).replace('-', '.')
 
-        Log.e("AdapterW", "NAME0: ${item.toString()}")
-
-
-        holder.binding.tvData.text = item.dt_txt.format("yyyy.MM.DD hh:mm")
+        holder.binding.tvData.text =dateTime
         holder.binding.tvTempValue.text = item.main.temp.toString() + " °C"
         holder.binding.clItem.setOnClickListener {
-            Log.e("AdapterW", "NAME: ${item.name}")
+
             holder.itemView.findNavController()
                 .navigate(
                     HomeFragmentDirections.actionHomeFragmentToDetailFragment(

@@ -21,14 +21,9 @@ class ArchiveAdapter(
     private val viewModel: HomeViewModel
 
 ) : RecyclerView.Adapter<ArchiveAdapter.ItemViewHolder>() {
-//    private val database = getDatabaseWithNote(application)
-//    private val repository = Repository(database, ApiService)
-//    private val dataset: List<WeatherWithNote> = repository.getWeatherWithNote()
-//    private val dataset: List<WeatherWithNote> = listOf()
 
 
     class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        //            var weatherImg: TextView = view.findViewById(R.id.iv_archive)
         var tempValue: TextView = view.findViewById(R.id.tv_temp_archive)
         var tempData: TextView = view.findViewById(R.id.tv_archive_date)
         var tempText: TextView = view.findViewById(R.id.tv_arhive_note)
@@ -53,10 +48,11 @@ class ArchiveAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
-//            holder.weatherImg.setBackgroundResource(item.)
+        var dateTime = item.dt_txt.substring(0, item.dt_txt.length - 3).replace('-', '.')
+
         holder.tempValue.text = item.temp.toString() + " °C"
         holder.tempText.text = item.note
-        holder.tempData.text = item.dt_txt.format("YY.MM.DD hh:mm")
+        holder.tempData.text = dateTime
 
         holder.weatherWithNote.setOnClickListener {
             holder.view.findNavController()

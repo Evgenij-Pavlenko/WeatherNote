@@ -51,10 +51,13 @@ class DetailFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-binding.editTextText.setText(note)
+
+        var dateTime = dt_txt.substring(0, dt_txt.length - 3).replace('-', '.')
+
+        binding.editTextText.setText(note)
         binding.tvDetailCity.text = name
-        binding.tvDetailData.text = dt_txt.format("YYYY.MM.DD")
-        binding.tvDetailTemp.text = temp.toString() +" °C"
+        binding.tvDetailData.text = dateTime
+        binding.tvDetailTemp.text = temp.toString() + " °C"
         Log.e("Detail", "note: $note")
 
 

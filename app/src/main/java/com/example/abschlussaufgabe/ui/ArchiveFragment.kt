@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import com.example.abschlussaufgabe.R
 import com.example.abschlussaufgabe.adapter.ArchiveAdapter
 import com.example.abschlussaufgabe.adapter.WeatherAdapter
@@ -19,6 +20,16 @@ class ArchiveFragment : Fragment() {
 
     private lateinit var binding: FragmentArchiveBinding
     private val viewModel: HomeViewModel by activityViewModels()
+    override fun onStart() {
+        super.onStart()
+        viewModel.loadWeatherWithNote()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadWeatherWithNote()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

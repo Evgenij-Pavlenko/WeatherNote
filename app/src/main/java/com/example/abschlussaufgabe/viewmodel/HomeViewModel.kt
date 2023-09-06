@@ -37,12 +37,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             repository.getCurentWeather(CITY)
         }
-        viewModelScope.launch {
-            repository.getWeatherWithNote()
-        }
+        loadWeatherWithNote()
 
     }
-
+ fun loadWeatherWithNote(){
+     viewModelScope.launch {
+         repository.getWeatherWithNote()
+     }
+ }
     fun insertWeather(weatherWithNote: WeatherWithNote) {
         viewModelScope.launch {
             repository.insert(weatherWithNote)
