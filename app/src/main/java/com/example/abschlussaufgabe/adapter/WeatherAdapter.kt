@@ -1,5 +1,6 @@
 package com.example.abschlussaufgabe.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.RelativeDateTimeFormatter.Direction
 import android.text.Layout.Directions
@@ -35,6 +36,7 @@ class WeatherAdapter(
         return dataset.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         Log.e("AdapterW", "NAME0: ${cityName}")
@@ -43,7 +45,7 @@ class WeatherAdapter(
 
 
         holder.binding.tvData.text = item.dt_txt.format("yyyy.MM.DD hh:mm")
-        holder.binding.tvTempValue.text = item.main.temp.toString() + " C"
+        holder.binding.tvTempValue.text = item.main.temp.toString() + " °C"
         holder.binding.clItem.setOnClickListener {
             Log.e("AdapterW", "NAME: ${item.name}")
             holder.itemView.findNavController()

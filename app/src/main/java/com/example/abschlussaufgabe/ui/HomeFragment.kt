@@ -1,5 +1,6 @@
 package com.example.abschlussaufgabe.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,11 +32,12 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.weather.observe(viewLifecycleOwner){
-            binding.tvTempGross.text = it.main.temp.toString() + " C"
+            binding.tvTempGross.text = it.main.temp.toString() + " °C"
             binding.tvCity.text = it.name
             cityName = it.name
         }

@@ -1,5 +1,6 @@
 package com.example.abschlussaufgabe.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -47,12 +48,13 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 binding.editTextText.setText(note)
         binding.tvDetailCity.text = name
         binding.tvDetailData.text = dt_txt.format("YYYY.MM.DD")
-        binding.tvDetailTemp.text = temp.toString()
+        binding.tvDetailTemp.text = temp.toString() +" °C"
         Log.e("Detail", "note: $note")
 
 
