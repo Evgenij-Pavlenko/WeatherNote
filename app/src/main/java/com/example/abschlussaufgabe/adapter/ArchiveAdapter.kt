@@ -1,7 +1,5 @@
 package com.example.abschlussaufgabe.adapter
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +8,23 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abschlussaufgabe.R
-import com.example.abschlussaufgabe.data.datamodels.Weather
+import com.example.abschlussaufgabe.data.Repository
 import com.example.abschlussaufgabe.data.datamodels.WeatherWithNote
+import com.example.abschlussaufgabe.data.local.getDatabaseWithNote
+import com.example.abschlussaufgabe.data.remote.ApiService
 import com.example.abschlussaufgabe.ui.ArchiveFragmentDirections
-import java.util.Date
+import com.example.abschlussaufgabe.viewmodel.HomeViewModel
 
 class ArchiveAdapter (
-    private val dataset: List<WeatherWithNote>
-    ) : RecyclerView.Adapter<ArchiveAdapter.ItemViewHolder>() {
+    private val dataset: List<WeatherWithNote>,
+    private val viewModel: HomeViewModel
+
+) : RecyclerView.Adapter<ArchiveAdapter.ItemViewHolder>() {
+//    private val database = getDatabaseWithNote(application)
+//    private val repository = Repository(database, ApiService)
+//    private val dataset: List<WeatherWithNote> = repository.getWeatherWithNote()
+//    private val dataset: List<WeatherWithNote> = listOf()
+
 
         class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 //            var weatherImg: TextView = view.findViewById(R.id.iv_archive)
@@ -26,6 +33,10 @@ class ArchiveAdapter (
             var tempText: TextView = view.findViewById(R.id.tv_arhive_note)
             val weatherWithNote: ConstraintLayout = view.findViewById(R.id.cl_archive)
         }
+
+    fun removeWeather(position: Int){
+        viewModel.deleteWeatherWithNote(dataset[position])
+    }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
             val adapterLayout =

@@ -11,6 +11,7 @@ import com.example.abschlussaufgabe.R
 import com.example.abschlussaufgabe.adapter.ArchiveAdapter
 import com.example.abschlussaufgabe.adapter.WeatherAdapter
 import com.example.abschlussaufgabe.databinding.FragmentArchiveBinding
+import com.example.abschlussaufgabe.helper.WeatherTouchHelper
 import com.example.abschlussaufgabe.viewmodel.HomeViewModel
 
 
@@ -31,9 +32,16 @@ class ArchiveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val adapter = viewModel.weatherListWithNote.value?.let { ArchiveAdapter(it, viewModel) }
+        binding.rvArchive.adapter = adapter
+
+
+        WeatherTouchHelper { position ->
+            adapter?.removeWeather(position)
+        }.attachToRecyclerView(binding.rvArchive)
 
         viewModel.weatherListWithNote.observe(viewLifecycleOwner) {
-            binding.rvArchive.adapter = ArchiveAdapter(it)
+            binding.rvArchive.adapter = ArchiveAdapter(it, viewModel)
         }
 
     }

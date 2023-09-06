@@ -57,7 +57,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun deleteWeather(weatherWithNote: WeatherWithNote) {
+    fun deleteWeatherWithNote(weatherWithNote: WeatherWithNote) {
         viewModelScope.launch {
             Log.e(TAG, "Deleted user with id ${weatherWithNote.id}")
             repository.delete(weatherWithNote)

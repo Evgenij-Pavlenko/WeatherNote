@@ -73,7 +73,7 @@ class Repository(private val database: WeatherWithNoteDatabase, private val api:
 
     suspend fun delete(weatherWithNote: WeatherWithNote) {
         try {
-            database.weatherWithNoteDatabaseDao.deleteById(weatherWithNote.id)
+            database.weatherWithNoteDatabaseDao.deleteWeatherWithNote(weatherWithNote)
         } catch (e: Exception) {
             Log.e(TAG, "Failed to delete from database: $e")
         }

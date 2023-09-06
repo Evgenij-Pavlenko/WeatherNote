@@ -2,6 +2,7 @@ package com.example.abschlussaufgabe.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -28,4 +29,7 @@ interface WeatherWithNoteDatabaseDao {
 
     @Query("DELETE FROM weatherWithNote_table WHERE id == :idWeather")
     fun deleteById(idWeather:Long)
+
+    @Delete
+    suspend fun deleteWeatherWithNote(weatherWithNote: WeatherWithNote)
 }
