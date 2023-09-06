@@ -29,3 +29,6 @@ local.properties
 /app/src/androidTest/
 /app/proguard-rules.pro
 /app/release/
+
+# Security files
+/app/src/helper/Security.kt
